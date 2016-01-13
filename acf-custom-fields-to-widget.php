@@ -55,7 +55,8 @@ class ACF_CF_Widget extends WP_Widget {
 					$reisgegevens['prijs'] = array(__('Prijs'), (get_sub_field('prijs')) ? '&#8364; ' . get_sub_field('prijs') : '');
 
 					if(!empty($reisgegevens)) { // If any values: output table start tag
-						$output = '<table class="reisdata-tabel">';
+						$output = $args['before_widget'];
+						$output .= '<table class="reisdata-tabel">';
 						foreach($reisgegevens as $key => $value) {  // loop through the array
 							if($value[1] !== '') { // If the custom field has a value
 								$key_formatted = str_replace('_', '-', $key); // Replace underscores with dashes, so the classnames look nice
@@ -66,6 +67,7 @@ class ACF_CF_Widget extends WP_Widget {
 							}
 						}
 						$output .= '</table>';
+						$output .= $args['after_widget'];
 						echo $output;
 					}
 				}
