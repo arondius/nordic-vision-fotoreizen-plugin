@@ -50,7 +50,7 @@ class ACF_CF_Widget extends WP_Widget {
 					$reisgegevens['reiscode'] = array(__('Reiscode'), (get_sub_field('reiscode')) ? get_sub_field('reiscode') : '');
 					$reisgegevens['reisdatum_start'] = array(__('Vertrek'), (get_sub_field('reisdatum')) ? get_sub_field('reisdatum') : '');
 					$reisgegevens['reisdatum_eind'] = array(__('Terugkomst'), (get_sub_field('reisdatum_eind')) ? get_sub_field('reisdatum_eind') : '');
-					$reisgegevens['beschikbare_plaatsen'] = array(__('Beschikbare plaatsen'), (get_sub_field('beschikbare_plaatsen')) ? get_sub_field('beschikbare_plaatsen') : '');
+					$reisgegevens['beschikbare_plaatsen'] = array(__('Beschikbare plaatsen'), (get_sub_field('beschikbare_plaatsen') && (int)get_sub_field('beschikbare_plaatsen') > 0 ) ? ((int)get_sub_field('beschikbare_plaatsen')) : __('Volgeboekt'));
 					$reisgegevens['vertrekgarantie'] = array(__('Vertrekgarantie'), (get_sub_field('vertrekgarantie')) ? get_sub_field('vertrekgarantie') : '');
 					$reisgegevens['prijs'] = array(__('Prijs'), (get_sub_field('prijs')) ? '&#8364; ' . get_sub_field('prijs') : '');
 
