@@ -41,7 +41,7 @@ class ACF_CF_Widget extends WP_Widget {
 		 */
 
 		if(class_exists('acf')) { // We depend on the Advanced Custom Fields plugin, so check taht it is active
-
+			$output = $args['before_widget'];
 			if(have_rows('reiscode_datum', $post->ID)) { // Repeater Fields for reisdata
 				while(have_rows('reiscode_datum', $post->ID)) {
 					the_row();
@@ -55,7 +55,6 @@ class ACF_CF_Widget extends WP_Widget {
 					$reisgegevens['prijs'] = array(__('Prijs'), (get_sub_field('prijs')) ? '&#8364; ' . get_sub_field('prijs') : '');
 
 					if(!empty($reisgegevens)) { // If any values: output table start tag
-						$output = $args['before_widget'];
 						$output .= '<table class="reisdata-tabel">';
 						foreach($reisgegevens as $key => $value) {  // loop through the array
 							if($value[1] !== '') { // If the custom field has a value
@@ -67,11 +66,16 @@ class ACF_CF_Widget extends WP_Widget {
 							}
 						}
 						$output .= '</table>';
-						$output .= $args['after_widget'];
-						echo $output;
 					}
+					if(get_sub_field('beschikbare_plaatsen') && (int)get_sub_field('beschikbare_plaatsen') > 0 ) {
+			$output .= '<div class="main-cta"><a href="http://travel-theme.fotoreizen.net/boek-een-fotoreis/" class="main-cta__link active"><span data-av_icon="" data-av_iconfont="entypo-fontello"></span><span class="avia_iconbox_title">Boek deze reis</span></a></div>';
+			} else {
+				$output .= '<div class="main-cta"><span class="main-cta__link inactive"><span data-av_icon="" data-av_iconfont="entypo-fontello"></span><span class="avia_iconbox_title">Volgeboekt</span></a></div>';
+			}
 				}
 			}
+			$output .= $args['after_widget'];
+			echo $output;
 		}
 	}
 }
