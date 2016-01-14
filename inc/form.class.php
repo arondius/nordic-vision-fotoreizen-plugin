@@ -40,8 +40,8 @@ class webbb_fotoreizen_form {
 }
 	public function populate_posts() {
 
-		$webbb_fotoreizen_base = new webbb_fotoreizen_base();
-		$posts_array = $webbb_fotoreizen_base->get_fotoreizen();
+		$base = new webbb_fotoreizen_base();
+		$posts_array = $base->get_fotoreizen();
 
 		foreach ($posts_array as $key => $single_post) {
 
