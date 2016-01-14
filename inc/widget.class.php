@@ -38,8 +38,8 @@ class Fotoreizen_ACF_CF_Widget extends WP_Widget {
 
 		 */
 
-		$reisgegevensClass = new webbb_fotoreizen_base();
-		$reisgegevens = $reisgegevensClass->get_travel_fields()['widget_output'];
+		$base = new webbb_fotoreizen_base();
+		$reisgegevens = $base->get_travel_fields()['widget_output'];
 		$output = $args['before_widget'];
 
 		if(!empty($reisgegevens)) { // If any values: output table start tag
@@ -56,7 +56,7 @@ class Fotoreizen_ACF_CF_Widget extends WP_Widget {
 			}
 			$output .= '</table>';
 		}
-		if($reisgegevensClass->is_bookable()) {
+		if($base->is_bookable()) {
 			$output .= '<div class="main-cta"><a href="http://travel-theme.fotoreizen.net/boek-een-fotoreis/" class="main-cta__link active"><span data-av_icon="" data-av_iconfont="entypo-fontello"></span><span class="avia_iconbox_title">Boek deze reis</span></a></div>';
 		} else {
 			$output .= '<div class="main-cta"><span class="main-cta__link inactive"><span data-av_icon="" data-av_iconfont="entypo-fontello"></span><span class="avia_iconbox_title">Volgeboekt</span></a></div>';
