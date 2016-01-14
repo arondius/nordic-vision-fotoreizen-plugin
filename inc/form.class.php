@@ -51,7 +51,7 @@ class webbb_fotoreizen_form {
 				if(have_rows('reiscode_datum', $single_post->ID)) {
 					while(have_rows('reiscode_datum', $single_post->ID)) {
 						the_row();
-						if (get_sub_field('reiscode') && get_sub_field('reisdatum') && get_sub_field('reisdatum_eind')) {
+						if (get_sub_field('reiscode') && get_sub_field('reisdatum') && get_sub_field('reisdatum_eind') && $base->is_bookable()) {
 							$reiscode = get_sub_field('reiscode');
 							$reisdatum_start = get_sub_field('reisdatum');
 							$reisdatum_eind = get_sub_field('reisdatum_eind');
