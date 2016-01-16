@@ -13,7 +13,6 @@ class webbb_fotoreizen_table {
 	}
 
 	public function generate_table() {
-		$output = 'table generation';
 		$base = new webbb_fotoreizen_base();
 		$fotoreizen = $base->get_fotoreizen();
 
