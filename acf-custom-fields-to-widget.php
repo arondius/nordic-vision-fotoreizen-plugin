@@ -16,3 +16,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once('inc/base.class.php');
 require_once('inc/widget.class.php');
 require_once('inc/table.class.php');
+require_once('inc/form.class.php');
