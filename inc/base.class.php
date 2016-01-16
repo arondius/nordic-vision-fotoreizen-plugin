@@ -6,6 +6,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class webbb_fotoreizen_base {
 
+	protected $_is_bookable = true;
+
 	public function get_travel_fields($post_id = null) {
 
 		if(class_exists('acf')) { // We depend on the Advanced Custom Fields plugin, so check that it is active
@@ -46,7 +48,17 @@ class webbb_fotoreizen_base {
 		return get_posts($args);
 	}
 
-	public function is_bookable() {
-		return (get_sub_field('beschikbare_plaatsen') && (int)get_sub_field('beschikbare_plaatsen') > 0) ? true : false;
+	private function check_availability($post_id) {
+			$bookable = (get_sub_field('beschikbare_plaatsen') && (int)get_sub_field('beschikbare_plaatsen') > 0) ? true : false;
+			return $bookable;
 	}
+
+	private function set_bookable($post_id) {
+		$this->_is_bookable = $this->check_availability($post_id);
+	}
+
+	public function get_bookable() {
+		return $this->_is_bookable;
+	}
+
 }
