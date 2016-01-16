@@ -19,8 +19,8 @@ class webbb_fotoreizen_form {
 					continue;
 			}
 
-		$posts = $this->populate_posts();
-		$choices = array();
+			$posts = $this->populate_posts();
+			$choices = array();
 
 			foreach ( $posts as $key => $post ) {
 
