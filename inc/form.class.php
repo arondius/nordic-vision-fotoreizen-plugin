@@ -28,7 +28,7 @@ class webbb_fotoreizen_form {
 					foreach ($post['reiscode'] as $reiscode => $reisdatum) {
 						$choices[$reiscode] = array(
 							'text' => $post['post_title'] . ' - ' . $reisdatum . ' - ' . $reiscode ,
-							'value' => $post['post_title'] . ' - ' . $reisdatum . ' - ' . $reiscode
+							'value' => $reiscode
 						);
 					}
 				}
