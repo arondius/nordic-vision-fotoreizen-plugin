@@ -15,7 +15,7 @@ class webbb_fotoreizen_form {
 
 		foreach ( $form['fields'] as &$field ) {
 
-			if ( $field->type != 'select' || strpos( $field->cssClass, 'dynamic_travelcode' ) === false ) {
+			if ( ($field->type != 'select' && $field->type != 'checkbox' && $field->type != 'radio') || strpos( $field->cssClass, 'dynamic_travelcode' ) === false ) {
 					continue;
 			}
 
