@@ -48,30 +48,20 @@ class webbb_fotoreizen_form {
 
 		foreach ($posts_array as $key => $single_post) {
 
+			$post_data = $base->get_travel_fields($single_post->ID);
+
 			$reiscode_reisdatum = array();
+			if($post_data[$single_post->ID]['bookable']) {
+				$reiscode = $post_data[$single_post->ID]['data']['reiscode'][1];
+				$reisdatum_start = $post_data[$single_post->ID]['data']['reisdatum_start'][1];
+				$reisdatum_eind = $post_data[$single_post->ID]['data']['reisdatum_eind'][1];
+				$prijs = $post_data[$single_post->ID]['data']['prijs'][1];
 
-			if(class_exists('acf'))
-				if(have_rows('reiscode_datum', $single_post->ID)) {
-					while(have_rows('reiscode_datum', $single_post->ID)) {
-						the_row();
-						if (get_sub_field('reiscode') && get_sub_field('reisdatum') && get_sub_field('reisdatum_eind') && $base->is_bookable()) {
-							$reiscode = get_sub_field('reiscode');
-							$reisdatum_start = get_sub_field('reisdatum');
-							$reisdatum_eind = get_sub_field('reisdatum_eind');
+				$reiscode_reisdatum[$reiscode] = $reisdatum_start . ' - ' . $reisdatum_eind;
 
-							$reiscode_reisdatum[$reiscode] = $reisdatum_start . ' - ' . $reisdatum_eind;
-						}
-						else {
-							$reiscode_reisdatum[] = '';
-						}
-					}
-				}
-				else {
-					$reiscode_reisdatum = '';
-				}
-
-			$posts[$single_post->ID]['reiscode'] = $reiscode_reisdatum;
-			$posts[$single_post->ID]['post_title'] = $single_post->post_title;
+				$posts[$single_post->ID]['reiscode'] = $reiscode_reisdatum;
+				$posts[$single_post->ID]['post_title'] = $single_post->post_title;
+			}
 		}
 		return $posts;
 	}
