@@ -3,10 +3,13 @@ require_once('base.class.php');
 
 class webbb_fotoreizen_form {
 
-	add_filter( 'gform_pre_render', 'fotoreizen_populate_form' );
-	add_filter( 'gform_pre_validation', 'fotoreizen_populate_form' );
-	add_filter( 'gform_pre_submission_filter', 'fotoreizen_populate_form' );
-	add_filter( 'gform_admin_pre_render', 'fotoreizen_populate_form' );
+	public function __construct() {
+		// Hook into gravity Forms
+		add_filter( 'gform_pre_render', array($this, 'fotoreizen_populate_form') );
+		add_filter( 'gform_pre_validation', array($this, 'fotoreizen_populate_form') );
+		add_filter( 'gform_pre_submission_filter', array($this, 'fotoreizen_populate_form') );
+		add_filter( 'gform_admin_pre_render', array($this, 'fotoreizen_populate_form') );
+	}
 
 	function fotoreizen_populate_form( $form ) {
 
@@ -73,3 +76,5 @@ class webbb_fotoreizen_form {
 		return $posts;
 	}
 }
+
+new webbb_fotoreizen_form();
