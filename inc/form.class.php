@@ -11,7 +11,7 @@ class webbb_fotoreizen_form {
 		add_filter( 'gform_admin_pre_render', array($this, 'fotoreizen_populate_form') );
 	}
 
-	function fotoreizen_populate_form( $form ) {
+	public function fotoreizen_populate_form( $form ) {
 
 		foreach ( $form['fields'] as &$field ) {
 
