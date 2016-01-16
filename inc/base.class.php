@@ -6,14 +6,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class webbb_fotoreizen_base {
 
-	public function get_travel_fields() {
+	public function get_travel_fields($post_id = null) {
 
 		if(class_exists('acf')) { // We depend on the Advanced Custom Fields plugin, so check that it is active
 
-			global $post;
+			if($post_id === null) {
+				global $post;
+				$post_id = $post->ID;
+			}
 
-			if(have_rows('reiscode_datum')) { // Repeater Fields for reisdata
-				while(have_rows('reiscode_datum')) {
+			if(have_rows('reiscode_datum', $post_id)) { // Repeater Fields for reisdata
+
+				while(have_rows('reiscode_datum', $post_id)) {
 					the_row();
 
 					$reisgegevens['widget_output']['reiscode'] = array(__('Reiscode'), (get_sub_field('reiscode')) ? get_sub_field('reiscode') : '');
