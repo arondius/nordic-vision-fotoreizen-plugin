@@ -20,10 +20,10 @@ class webbb_fotoreizen_base {
 
 				while(have_rows('reiscode_datum', $post_id)) {
 					the_row();
+			$reisgegevens = array();
 
 					$this->set_bookable($post_id);
 					$bookable = $this->get_bookable();
-					$reisgegevens = array();
 					$reiscode = (get_sub_field('reiscode') ? get_sub_field('reiscode') : '');
 					if(!$reiscode) {
 						return false;
