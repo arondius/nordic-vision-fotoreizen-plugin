@@ -18,24 +18,24 @@ class webbb_fotoreizen_base {
 			$post_id = $post->ID;
 		}
 
-				while(have_rows('reiscode_datum', $post_id)) {
-					the_row();
+		if(have_rows('reiscode_datum', $post_id)) { // Repeater Fields for reisdata
 			$reisgegevens = array();
+			while(have_rows('reiscode_datum', $post_id)) {
+				the_row();
 
-					$this->set_bookable($post_id);
-					$bookable = $this->get_bookable();
-					$reiscode = (get_sub_field('reiscode') ? get_sub_field('reiscode') : '');
-					if(!$reiscode) {
-						return false;
-					}
-					// I would love to get all the subfields dynamically, i.e. get all existing subfields and assign their Title and value to an array, but get_sub_field only seems to accept a name as parameter. http://www.advancedcustomfields.com/resources/get_sub_field/
-					$reisgegevens[$reiscode]['bookable'] = $bookable;
-					$reisgegevens[$reiscode]['data']['reisdatum_start'] = array(__('Vertrek'), (get_sub_field('reisdatum')) ? get_sub_field('reisdatum') : '');
-					$reisgegevens[$reiscode]['data']['reisdatum_eind'] = array(__('Terugkomst'), (get_sub_field('reisdatum_eind')) ? get_sub_field('reisdatum_eind') : '');
-					$reisgegevens[$reiscode]['data']['beschikbare_plaatsen'] = array(__('Beschikbare plaatsen'), ($this->get_bookable()) ? ((int)get_sub_field('beschikbare_plaatsen')) : __('Volgeboekt'));
-					$reisgegevens[$reiscode]['data']['vertrekgarantie'] = array(__('Vertrekgarantie'), (get_sub_field('vertrekgarantie')) ? get_sub_field('vertrekgarantie') : '');
-					$reisgegevens[$reiscode]['data']['prijs'] = array(__('Prijs'), (get_sub_field('prijs')) ? '&#8364; ' . get_sub_field('prijs') : '');
+				$this->set_bookable($post_id);
+				$bookable = $this->get_bookable();
+				$reiscode = (get_sub_field('reiscode') ? get_sub_field('reiscode') : '');
+				if(!$reiscode) {
+					return false;
 				}
+				// I would love to get all the subfields dynamically, i.e. get all existing subfields and assign their Title and value to an array, but get_sub_field only seems to accept a name as parameter. http://www.advancedcustomfields.com/resources/get_sub_field/
+				$reisgegevens[$reiscode]['bookable'] = $bookable;
+				$reisgegevens[$reiscode]['data']['reisdatum_start'] = array(__('Vertrek'), (get_sub_field('reisdatum')) ? get_sub_field('reisdatum') : '');
+				$reisgegevens[$reiscode]['data']['reisdatum_eind'] = array(__('Terugkomst'), (get_sub_field('reisdatum_eind')) ? get_sub_field('reisdatum_eind') : '');
+				$reisgegevens[$reiscode]['data']['beschikbare_plaatsen'] = array(__('Beschikbare plaatsen'), ($this->get_bookable()) ? ((int)get_sub_field('beschikbare_plaatsen')) : __('Volgeboekt'));
+				$reisgegevens[$reiscode]['data']['vertrekgarantie'] = array(__('Vertrekgarantie'), (get_sub_field('vertrekgarantie')) ? get_sub_field('vertrekgarantie') : '');
+				$reisgegevens[$reiscode]['data']['prijs'] = array(__('Prijs'), (get_sub_field('prijs')) ? '&#8364; ' . get_sub_field('prijs') : '');
 			}
 		}
 		return $reisgegevens;
