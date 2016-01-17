@@ -35,29 +35,33 @@ class Fotoreizen_ACF_CF_Widget extends WP_Widget {
 		$output = $args['before_widget'];
 		$base = new webbb_fotoreizen_base();
 		$reisgegevens = $base->get_travel_fields();
-
 		// If any values: output table start tag
-		if(!empty($reisgegevens_single)) {
-			$output .= '<table class="reisdata-tabel">';
-			foreach($reisgegevens_single['data'] as $key => $value) {
+		if(!empty($reisgegevens)) {
+			
+			foreach($reisgegevens as $reiscode => $value) {
+				$output .= '<table class="reisdata-tabel">';
+				$output .= '<tr><th>Reiscode:</th><th>' . $reiscode . '</th></tr>';
+
 				// If the custom field has a value
-				if($value[1] !== '') {
-					// Replace underscores with dashes, so the HTML classnames look nice
-					$key_formatted = str_replace('_', '-', $key);
-					$output .= '<tr class="' . $key_formatted . '">';
-						$output .= '<td class="reisdata-title" >' . $value[0] . '</td>';
-						$output .= '<td class="reisdata-value">' . $value[1] . '</td>';
-					$output .= '</tr>';
+				if($value['data'] !== '') {
+					foreach ($value['data'] as $key => $data) {
+						// Replace underscores with dashes, so the HTML classnames look nice
+						$key_formatted = str_replace('_', '-', $key);
+						$output .= '<tr class="' . $key_formatted . '">';
+							$output .= '<td class="reisdata-title" >' . $data[0] . '</td>';
+							$output .= '<td class="reisdata-value">' . $data[1] . '</td>';
+						$output .= '</tr>';
+					}
 				}
+				$output .= '</table>';
+				if($reisgegevens[$reiscode]['bookable']) {
+					$output .= '<div class="main-cta"><a href="' . site_url() . '/boek-een-fotoreis/" class="main-cta__link active"><span data-av_icon="" data-av_iconfont="entypo-fontello"></span><span class="avia_iconbox_title">Boek deze reis</span></a></div>';
+				} else {
+					$output .= '<div class="main-cta"><span class="main-cta__link inactive"><span data-av_icon="" data-av_iconfont="entypo-fontello"></span><span class="avia_iconbox_title">Volgeboekt</span></a></div>';
+				}
+				$output .= $args['after_widget'];
 			}
-			$output .= '</table>';
-		}
-		if($reisgegevens_single['bookable']) {
-			$output .= '<div class="main-cta"><a href="' . site_url() . '/boek-een-fotoreis/" class="main-cta__link active"><span data-av_icon="" data-av_iconfont="entypo-fontello"></span><span class="avia_iconbox_title">Boek deze reis</span></a></div>';
-		} else {
-			$output .= '<div class="main-cta"><span class="main-cta__link inactive"><span data-av_icon="" data-av_iconfont="entypo-fontello"></span><span class="avia_iconbox_title">Volgeboekt</span></a></div>';
-		}
-		$output .= $args['after_widget'];
+		}		
 		echo $output;
 	}
 }
