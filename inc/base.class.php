@@ -10,13 +10,13 @@ class webbb_fotoreizen_base {
 
 	public function get_travel_fields($post_id = null) {
 
-		if(class_exists('acf')) { // We depend on the Advanced Custom Fields plugin, so check that it is active
-
-			if($post_id === null) {
-				global $post;
-				$post_id = $post->ID;
-			}
-			if(have_rows('reiscode_datum', $post_id)) { // Repeater Fields for reisdata
+		if(!class_exists('acf')) { // We depend on the Advanced Custom Fields plugin, so check that it is active
+			return false;
+		}
+		if($post_id === null) {
+			global $post;
+			$post_id = $post->ID;
+		}
 
 				while(have_rows('reiscode_datum', $post_id)) {
 					the_row();
@@ -37,8 +37,8 @@ class webbb_fotoreizen_base {
 					$reisgegevens[$reiscode]['data']['prijs'] = array(__('Prijs'), (get_sub_field('prijs')) ? '&#8364; ' . get_sub_field('prijs') : '');
 				}
 			}
-			return $reisgegevens;
 		}
+		return $reisgegevens;
 	}
 
 	public function get_fotoreizen() {
