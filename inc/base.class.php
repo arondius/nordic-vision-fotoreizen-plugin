@@ -51,7 +51,8 @@ class webbb_fotoreizen_base {
 		$fotoreizen = $this->get_fotoreizen();
 		$fotoreizen_data = array();
 		foreach ($fotoreizen as $fotoreis) {
-			$fotoreizen_data[$fotoreis->ID] = $this->get_travel_fields($fotoreis->ID);
+			$fotoreizen_data[$fotoreis->ID]['title'] = $fotoreis->post_title;
+			$fotoreizen_data[$fotoreis->ID]['reis'] = $this->get_travel_fields($fotoreis->ID);
 		}
 		return $fotoreizen_data;
 	}
