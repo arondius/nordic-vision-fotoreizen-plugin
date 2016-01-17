@@ -32,22 +32,18 @@ class Fotoreizen_ACF_CF_Widget extends WP_Widget {
 
 	function widget( $args, $instance ) {
 
-		/*
-
-			To do: It would be better to get all the values and loop through them automatically
-
-		 */
-
-
 		$output = $args['before_widget'];
 		$base = new webbb_fotoreizen_base();
 		$reisgegevens = $base->get_travel_fields();
 
-		if(!empty($reisgegevens_single)) { // If any values: output table start tag
+		// If any values: output table start tag
+		if(!empty($reisgegevens_single)) {
 			$output .= '<table class="reisdata-tabel">';
-			foreach($reisgegevens_single['data'] as $key => $value) {  // loop through the array
-				if($value[1] !== '') { // If the custom field has a value
-					$key_formatted = str_replace('_', '-', $key); // Replace underscores with dashes, so the classnames look nice
+			foreach($reisgegevens_single['data'] as $key => $value) {
+				// If the custom field has a value
+				if($value[1] !== '') {
+					// Replace underscores with dashes, so the HTML classnames look nice
+					$key_formatted = str_replace('_', '-', $key);
 					$output .= '<tr class="' . $key_formatted . '">';
 						$output .= '<td class="reisdata-title" >' . $value[0] . '</td>';
 						$output .= '<td class="reisdata-value">' . $value[1] . '</td>';
