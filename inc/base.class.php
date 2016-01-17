@@ -26,13 +26,13 @@ class webbb_fotoreizen_base {
 					$bookable = $this->get_bookable();
 
 					// I would love to get all the subfields dynamically, i.e. get all existing subfields and assign their Title and value to an array, but get_sub_field only seems to accept a name as parameter. http://www.advancedcustomfields.com/resources/get_sub_field/
-					$reisgegevens[$post_id]['bookable'] = $bookable;
-					$reisgegevens[$post_id]['data']['reiscode'] = array(__('Reiscode'), (get_sub_field('reiscode')) ? get_sub_field('reiscode') : '');
-					$reisgegevens[$post_id]['data']['reisdatum_start'] = array(__('Vertrek'), (get_sub_field('reisdatum')) ? get_sub_field('reisdatum') : '');
-					$reisgegevens[$post_id]['data']['reisdatum_eind'] = array(__('Terugkomst'), (get_sub_field('reisdatum_eind')) ? get_sub_field('reisdatum_eind') : '');
-					$reisgegevens[$post_id]['data']['beschikbare_plaatsen'] = array(__('Beschikbare plaatsen'), ($this->get_bookable()) ? ((int)get_sub_field('beschikbare_plaatsen')) : __('Volgeboekt'));
-					$reisgegevens[$post_id]['data']['vertrekgarantie'] = array(__('Vertrekgarantie'), (get_sub_field('vertrekgarantie')) ? get_sub_field('vertrekgarantie') : '');
-					$reisgegevens[$post_id]['data']['prijs'] = array(__('Prijs'), (get_sub_field('prijs')) ? '&#8364; ' . get_sub_field('prijs') : '');
+					$reisgegevens['bookable'] = $bookable;
+					$reisgegevens['data']['reiscode'] = array(__('Reiscode'), (get_sub_field('reiscode')) ? get_sub_field('reiscode') : '');
+					$reisgegevens['data']['reisdatum_start'] = array(__('Vertrek'), (get_sub_field('reisdatum')) ? get_sub_field('reisdatum') : '');
+					$reisgegevens['data']['reisdatum_eind'] = array(__('Terugkomst'), (get_sub_field('reisdatum_eind')) ? get_sub_field('reisdatum_eind') : '');
+					$reisgegevens['data']['beschikbare_plaatsen'] = array(__('Beschikbare plaatsen'), ($this->get_bookable()) ? ((int)get_sub_field('beschikbare_plaatsen')) : __('Volgeboekt'));
+					$reisgegevens['data']['vertrekgarantie'] = array(__('Vertrekgarantie'), (get_sub_field('vertrekgarantie')) ? get_sub_field('vertrekgarantie') : '');
+					$reisgegevens['data']['prijs'] = array(__('Prijs'), (get_sub_field('prijs')) ? '&#8364; ' . get_sub_field('prijs') : '');
 				}
 			}
 			return $reisgegevens;
