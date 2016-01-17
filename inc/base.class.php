@@ -45,6 +45,15 @@ class webbb_fotoreizen_base {
 		return get_posts($args);
 	}
 
+	public function render_fotoreizen_array() {
+		$fotoreizen = $this->get_fotoreizen();
+		$fotoreizen_data = array();
+		foreach ($fotoreizen as $fotoreis) {
+			$fotoreizen_data[$fotoreis->ID] = $this->get_travel_fields($fotoreis->ID);
+		}
+		return $fotoreizen_data;
+	}
+
 	private function check_availability($post_id) {
 			$bookable = (get_sub_field('beschikbare_plaatsen') && (int)get_sub_field('beschikbare_plaatsen') > 0) ? true : false;
 			return $bookable;
