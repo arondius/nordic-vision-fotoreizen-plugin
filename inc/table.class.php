@@ -14,7 +14,7 @@ class webbb_fotoreizen_table {
 
 	public function generate_table() {
 		$base = new webbb_fotoreizen_base();
-		$fotoreizen = $base->get_fotoreizen();
+		$fotoreizen = $base->populate_fotoreizen_array();
 
 		$output .= '<table>';
 		$output .= '<tr>';
