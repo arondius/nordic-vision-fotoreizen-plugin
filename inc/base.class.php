@@ -45,7 +45,7 @@ class webbb_fotoreizen_base {
 		return get_posts($args);
 	}
 
-	public function render_fotoreizen_array() {
+	public function populate_fotoreizen_array() {
 		$fotoreizen = $this->get_fotoreizen();
 		$fotoreizen_data = array();
 		foreach ($fotoreizen as $fotoreis) {
