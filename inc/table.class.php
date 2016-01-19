@@ -21,6 +21,7 @@ class webbb_fotoreizen_table {
 				//echo $date['data']['reisdatum_start'][1] . '</br>';
 				if(!empty($date['data']['reisdatum_start'][1])) { // If one of the values isn't filled in continue
 					foreach($date['data'] as $key => $date_entry) {
+						$reisdatums[$reiscode]['permalink'] = post_permalink($fotoreis_id);
 						$reisdatums[$reiscode]['title'] = $bestemming['title'];
 						$reisdatums[$reiscode][$key] = $date_entry[1];
 					}
