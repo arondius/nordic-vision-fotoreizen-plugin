@@ -45,12 +45,14 @@ class Fotoreizen_ACF_CF_Widget extends WP_Widget {
 				// If the custom field has a value
 				if($value['data'] !== '') {
 					foreach ($value['data'] as $key => $data) {
-						// Replace underscores with dashes, so the HTML classnames look nice
-						$key_formatted = str_replace('_', '-', $key);
-						$output .= '<tr class="' . $key_formatted . '">';
-							$output .= '<td class="reisdata-title" >' . $data[0] . '</td>';
-							$output .= '<td class="reisdata-value">' . $data[1] . '</td>';
-						$output .= '</tr>';
+						if($data[1]) {
+							// Replace underscores with dashes, so the HTML classnames look nice
+							$key_formatted = str_replace('_', '-', $key);
+							$output .= '<tr class="' . $key_formatted . '">';
+								$output .= '<td class="reisdata-title" >' . $data[0] . '</td>';
+								$output .= '<td class="reisdata-value">' . $data[1] . '</td>';
+							$output .= '</tr>';
+						}
 					}
 				}
 				$output .= '</table>';
