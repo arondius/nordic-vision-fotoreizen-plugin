@@ -41,30 +41,6 @@ class webbb_fotoreizen_form {
 		}
 
 		return $form;
-}
-	public function populate_posts() {
-
-		$base = new webbb_fotoreizen_base();
-		$posts_array = $base->get_fotoreizen();
-
-		foreach ($posts_array as $key => $single_post) {
-
-			$post_data = $base->get_travel_fields($single_post->ID);
-
-			$reiscode_reisdatum = array();
-			if($post_data[$single_post->ID]['bookable']) {
-				$reiscode = $post_data[$single_post->ID]['data']['reiscode'][1];
-				$reisdatum_start = $post_data[$single_post->ID]['data']['reisdatum_start'][1];
-				$reisdatum_eind = $post_data[$single_post->ID]['data']['reisdatum_eind'][1];
-				$prijs = $post_data[$single_post->ID]['data']['prijs'][1];
-
-				$reiscode_reisdatum[$reiscode] = $reisdatum_start . ' - ' . $reisdatum_eind;
-
-				$posts[$single_post->ID]['reiscode'] = $reiscode_reisdatum;
-				$posts[$single_post->ID]['post_title'] = $single_post->post_title;
-			}
-		}
-		return $posts;
 	}
 }
 
