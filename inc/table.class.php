@@ -53,13 +53,13 @@ class webbb_fotoreizen_table {
 			$bookings_close_tag = $bln_bookable ? '</a>' : '</span>';
 			$booking_html = $bookings_open_tag . $boekings_num_plaatsen . $boekings_cta_text . $bookings_close_tag;
 
-			$output .= '<tr data-href="' . $reisdatum['permalink'] . '">';
-			$output .= '<td>' . $formatted_date_start  . ' t/m ' . $formatted_date_end  . '</td>';
-			$output .= '<td><a href="' . $reisdatum['permalink'] . '">' . $reisdatum['title'] . '</a></td>';
-			$output .= '<td>' . $reiscode . '</td>';
-			$output .= '<td>' . $reisdatum['prijs'] . '</td>';
-			$output .= '<td>' . $booking_html . '</td>';
-			$output .= '<td>' . $reisdatum['vertrekgarantie'] . '</td>';
+			$output .= '<tr>';
+			$output .= '<td data-href="' . $reisdatum['permalink'] . '">' . $formatted_date_start  . ' t/m ' . $formatted_date_end  . '</td>';
+			$output .= '<td data-href="' . $reisdatum['permalink'] . '"><a href="'. $reisdatum['permalink']. '">' . $reisdatum['title'] . '</a></td>';
+			$output .= '<td data-href="' . $reisdatum['permalink'] . '">' . $reiscode . '</td>';
+			$output .= '<td data-href="' . $reisdatum['permalink'] . '">' . $reisdatum['prijs'] . '</td>';
+			$output .= '<td data-href="' . $bookings_link . '">' . $booking_html . '</td>';
+			$output .= '<td data-href="' . $reisdatum['permalink'] . '">' . $reisdatum['vertrekgarantie'] . '</td>';
 			$output .= '</tr>';
 		}
 		$output .= '</table>';
