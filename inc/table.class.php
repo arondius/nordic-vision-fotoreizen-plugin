@@ -45,12 +45,19 @@ class webbb_fotoreizen_table {
 		foreach($reisdatums as $reiscode => $reisdatum) {
 			$formatted_date_start = date_i18n('d M Y', strtotime($reisdatum['reisdatum_start']));
 			$formatted_date_end = date_i18n('d M Y', strtotime($reisdatum['reisdatum_eind']));
+			$bln_bookable = $reisdatum['beschikbare_plaatsen'] > 0;
+			$bookings_open_tag = $bln_bookable ? '<a class="btn btn-small btn-cta" href="' . site_url('boek-een-fotoreis') . '">' : '<span class="btn btn-small btn-inactive">';
+			$boekings_num_plaatsen = $bln_bookable ? '<span class="num-plaatsen">' . $reisdatum['beschikbare_plaatsen'] .  ' </span>' : '';
+			$boekings_cta_text = '<span class="numplaatsen-text">' . ($bln_bookable ? ' - Boek deze reis' : 'Volgeboekt') . '</span>';
+			$bookings_close_tag = $bln_bookable ? '</a>' : '</span>';
+			$booking_html = $bookings_open_tag . $boekings_num_plaatsen . $boekings_cta_text . $bookings_close_tag;
+
 			$output .= '<tr data-href="' . $reisdatum['permalink'] . '">';
 			$output .= '<td>' . $formatted_date_start  . ' t/m ' . $formatted_date_end  . '</td>';
 			$output .= '<td><a href="' . $reisdatum['permalink'] . '">' . $reisdatum['title'] . '</a></td>';
 			$output .= '<td>' . $reiscode . '</td>';
 			$output .= '<td>' . $reisdatum['prijs'] . '</td>';
-			$output .= '<td>' . $reisdatum['beschikbare_plaatsen'] . '</td>';
+			$output .= '<td>' . $booking_html . '</td>';
 			$output .= '<td>' . $reisdatum['vertrekgarantie'] . '</td>';
 			$output .= '</tr>';
 		}
