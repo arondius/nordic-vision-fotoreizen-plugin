@@ -19,7 +19,8 @@ class webbb_fotoreizen_form {
 					continue;
 			}
 
-			$posts = $this->populate_posts();
+			$base = new webbb_fotoreizen_base();
+			$travel_tours_array = $base->generate_photo_tours_array();
 			$choices = array();
 
 			foreach ( $posts as $key => $post ) {

@@ -47,7 +47,7 @@ class webbb_fotoreizen_base {
 		return get_posts($args);
 	}
 
-	public function populate_fotoreizen_array() {
+	public function populate_photo_destinations_array() {
 		$fotoreizen = $this->get_fotoreizen();
 		$fotoreizen_data = array();
 		foreach ($fotoreizen as $fotoreis) {
@@ -55,6 +55,40 @@ class webbb_fotoreizen_base {
 			$fotoreizen_data[$fotoreis->ID]['reis'] = $this->get_travel_fields($fotoreis->ID);
 		}
 		return $fotoreizen_data;
+	}
+
+	public function generate_photo_tours_array() {
+		$fotoreizen = $this->populate_photo_destinations_array();
+		$reisdatums = array();
+		foreach($fotoreizen as $fotoreis_id => $bestemming) {
+			foreach ($bestemming['reis'] as $reiscode => $date) {				
+				$reisdatums[$reiscode]['permalink'] = post_permalink($fotoreis_id);
+				$reisdatums[$reiscode]['title'] = $bestemming['title'];
+				$reisdatums[$reiscode]['bookable'] = $date['bookable'];
+				if(!empty($date['data']['reisdatum_start'][1])) {
+					foreach($date['data'] as $key => $date_entry) {
+						$reisdatums[$reiscode][$key] = $date_entry[1];
+					}
+				}
+			}
+		}
+		uasort($reisdatums, array($this, 'cmp'));
+		return $reisdatums;
+	}
+
+	public function cmp($a, $b) {
+		$formatted_time_a = strtotime(str_replace('/', '-', $a['reisdatum_start']));
+		$formatted_time_b = strtotime(str_replace('/', '-', $b['reisdatum_start']));
+
+		if ($formatted_time_a < $formatted_time_b) {
+			return -1;
+		}
+		else if ($formatted_time_a === $formatted_time_b) {
+			return 0;
+		}
+		else {
+			return 1;
+		}
 	}
 
 	private function check_availability($post_id) {
