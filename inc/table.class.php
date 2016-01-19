@@ -38,7 +38,7 @@ class webbb_fotoreizen_table {
 
 	public function generate_table() {
 		$reisdatums = $this->generate_array();
-		$output .= '<table>';
+		$output .= '<table class="fotoreizen-calender">';
 		$output .= '<tr>';
 		$output .= '<th>Reisdatum</th><th>Reis</th><th>Reiscode</th><th>Prijs</th><th>Beschibare Plaatsen</th><th>Vertrekgarantie</th>';
 		$output .= '</tr>';
