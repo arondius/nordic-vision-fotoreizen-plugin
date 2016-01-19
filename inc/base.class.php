@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class webbb_fotoreizen_base {
 
 	protected $_is_bookable = true;
-
+	
 	public function get_travel_fields($post_id = null) {
 
 		if(!class_exists('acf')) { // We depend on the Advanced Custom Fields plugin, so check that it is active
