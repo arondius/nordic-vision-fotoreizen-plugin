@@ -23,15 +23,18 @@ class webbb_fotoreizen_form {
 			$travel_tours_array = $base->generate_photo_tours_array();
 			$choices = array();
 
-			foreach ( $posts as $key => $post ) {
+			foreach ( $travel_tours_array as $reiscode => $data ) {
 
-				if($post['reiscode'] && is_array($post['reiscode'])) {
-					foreach ($post['reiscode'] as $reiscode => $reisdatum) {
-						$choices[$reiscode] = array(
-							'text' => '<span class="col-4">' . $post['post_title'] . '</span><span class="col-4">' . $reisdatum . '</span><span class="col-4">' . $reiscode . '</span>',
-							'value' => $reiscode
-						);
-					}
+				if($data['bookable']) {
+					$reisdatum = $data['reisdatum_start'] . ' - ' . $data['reisdatum_eind'];
+					$title = $data['title'];
+					$text = ($field->type == 'checkbox' || $field->type == 'radio') ? '<span class="col-4">' . $title  . '</span><span class="col-4">' . $reisdatum . '</span><span class="col-4">' . $reiscode . '</span>' : $title  . ' - ' . $reisdatum . ' - ' . $reiscode;
+
+					$choices[$reiscode] = array(
+						'text' => $text,
+						'value' => $reiscode
+					);
+
 				}
 			}
 
