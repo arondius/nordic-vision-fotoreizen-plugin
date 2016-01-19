@@ -42,7 +42,7 @@ class webbb_fotoreizen_table {
 		$output .= '<tr>';
 		$output .= '<th>Reisdatum</th><th>Reis</th><th>Reiscode</th><th>Prijs</th><th>Beschibare Plaatsen</th><th>Vertrekgarantie</th>';
 		$output .= '</tr>';
-		foreach($reisdatums as $reisdatum) {
+		foreach($reisdatums as $reiscode => $reisdatum) {
 			$formatted_date_start = date_i18n('d M Y', strtotime($reisdatum['reisdatum_start']));
 			$formatted_date_end = date_i18n('d M Y', strtotime($reisdatum['reisdatum_eind']));
 			$output .= '<tr data-href="' . $reisdatum['permalink'] . '">';
