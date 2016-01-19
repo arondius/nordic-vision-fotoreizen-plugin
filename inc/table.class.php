@@ -42,10 +42,10 @@ class webbb_fotoreizen_table {
 		$output .= '<th>Reisdatum</th><th>Reis</th><th>Reiscode</th><th>Prijs</th><th>Beschibare Plaatsen</th><th>Vertrekgarantie</th>';
 		$output .= '</tr>';
 		foreach($reisdatums as $reisdatum) {
-			$formatted_date_start = date_i18n(get_option( 'date_format' ), strtotime($reisdatum['reisdatum_start']));
-			$formatted_date_end = date_i18n(get_option( 'date_format' ), strtotime($reisdatum['reisdatum_eind']));
+			$formatted_date_start = date_i18n('d M Y', strtotime($reisdatum['reisdatum_start']));
+			$formatted_date_end = date_i18n('d M Y', strtotime($reisdatum['reisdatum_eind']));
 			$output .= '<tr>';
-			$output .= '<td>' . $formatted_date_start . ' t/m ' . $formatted_date_end . '</td>';
+			$output .= '<td>' . $formatted_date_start  . ' t/m ' . $formatted_date_end  . '</td>';
 			$output .= '<td><a href="' . post_permalink($fotoreis_id) . '">' . $bestemming['title'] . '</a></td>';
 			$output .= '<td>' . $reisdatum['reiscode'] . '</td>';
 			$output .= '<td>' . $reisdatum['prijs'] . '</td>';
