@@ -39,7 +39,7 @@ class webbb_fotoreizen_form {
 			}
 
 			// update 'Select a Post' to whatever you'd like the instructive option to be
-			$field->placeholder = 'Select een fotoreis';
+			$field->placeholder = 'Selecteer een fotoreis';
 			$field->choices = $choices;
 		}
 
