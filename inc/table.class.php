@@ -33,25 +33,26 @@ class webbb_fotoreizen_table {
 		//var_dump(strtotime('11/03/2016') - strtotime('11/03/2017')); exit;
 		var_dump($reisdatums);
 		function cmp($a, $b) {
-			echo str_replace('/', '-', $a['reisdatum_start']) . '<br/>';
-			echo str_replace('/', '-', $b['reisdatum_start']) . '<br/>';
-			if (strtotime(str_replace('/', '-', $a['reisdatum_start'])) < strtotime(str_replace('/', '-', $b['reisdatum_start']))) {
-				echo $a['reisdatum_start'] . '</br>';
-				echo 'UNIX time is ' . strtotime($a['reisdatum_start']) . ' </br>';
-				echo '-1 fotoreis ' . $a['title'] . ' van ' . $a['reisdatum_start'] . ' - ' . strtotime($a['reisdatum_start']) . ' is later dan ' . 'fotoreis ' . $b['title'] . ' van ' . $b['reisdatum_start'] . ' - ' . strtotime($b['reisdatum_start']) . '</br>' . PHP_EOL;
-				return -1;
+			$formatted_time_a = strtotime(str_replace('/', '-', $a['reisdatum_start']));
+			$formatted_time_b = strtotime(str_replace('/', '-', $b['reisdatum_start']));
+
+			if ($formatted_time_a < $formatted_time_b) {
+//				echo $a['reisdatum_start'] . '</br>';
+//				echo 'UNIX time is ' . $formatted_time_a . ' </br>';
+//				echo '-1 fotoreis ' . $a['title'] . ' van ' . $a['reisdatum_start'] . ' - ' . $formatted_time_a . ' is eerder dan ' . 'fotoreis ' . $b['title'] . ' van ' . $b['reisdatum_start'] . ' - ' . $formatted_time_b . '</br>' . PHP_EOL;
+				return 1;
 			}
-			else if (strtotime($a['reisdatum_start']) === strtotime($b['reisdatum_start'])) {
-				echo $a['reisdatum_start'] . '</br>';
-				echo 'UNIX time is ' . strtotime($a['reisdatum_start']) . ' </br>';
-				echo '-1 fotoreis ' . $a['title'] . ' van ' . $a['reisdatum_start'] . ' - ' . strtotime($a['reisdatum_start']) . ' is gelijk aan ' . 'fotoreis ' . $b['title'] . ' van ' . $b['reisdatum_start'] . ' - ' . strtotime($b['reisdatum_start']) . '</br>' . PHP_EOL;
+			else if ($formatted_time_a === $formatted_time_b) {
+//				echo $a['reisdatum_start'] . '</br>';
+//				echo 'UNIX time is ' . $formatted_time_a . ' </br>';
+//				echo '-1 fotoreis ' . $a['title'] . ' van ' . $a['reisdatum_start'] . ' - ' . $formatted_time_a . ' is gelijk aan ' . 'fotoreis ' . $b['title'] . ' van ' . $b['reisdatum_start'] . ' - ' . $formatted_time_b . '</br>' . PHP_EOL;
 				return 0;
 			}
 			else {
-				echo $a['reisdatum_start'] . '</br>';
-				echo 'UNIX time is ' . strtotime($a['reisdatum_start']) . ' </br>';
-				echo '-1 fotoreis ' . $a['title'] . ' van ' . $a['reisdatum_start'] . ' - ' . strtotime($a['reisdatum_start']) . ' is eerder dan ' . 'fotoreis ' . $b['title'] . ' van ' . $b['reisdatum_start'] . ' - ' . strtotime($b['reisdatum_start']) . '</br>' . PHP_EOL;
-				return 1;
+//				echo $a['reisdatum_start'] . '</br>';
+//				echo 'UNIX time is ' . $formatted_time_a . ' </br>';
+//				echo '-1 fotoreis ' . $a['title'] . ' van ' . $a['reisdatum_start'] . ' - ' . $formatted_time_a . ' is later dan ' . 'fotoreis ' . $b['title'] . ' van ' . $b['reisdatum_start'] . ' - ' . $formatted_time_b . '</br>' . PHP_EOL;
+				return -1;
 			}
 		}
 		
@@ -70,12 +71,12 @@ class webbb_fotoreizen_table {
 		$output .= '</tr>';
 		foreach($reisdatums as $reisdatum) {
 			$output .= '<tr>';
-			$output .= '<td>' . $reisdatum['reisdatum_start'][1] . ' t/m ' . $reisdatum['reisdatum_eind'][1] . '</td>';
+			$output .= '<td>' . $reisdatum['reisdatum_start'] . ' t/m ' . $reisdatum['reisdatum_eind'] . '</td>';
 			$output .= '<td><a href="' . post_permalink($fotoreis_id) . '">' . $bestemming['title'] . '</a></td>';
-			$output .= '<td>' . $reisdatum['reiscode'][1] . '</td>';
-			$output .= '<td>' . $reisdatum['prijs'][1] . '</td>';
-			$output .= '<td>' . $reisdatum['beschikbare_plaatsen'][1] . '</td>';
-			$output .= '<td>' . $reisdatum['vertrekgarantie'][1] . '</td>';
+			$output .= '<td>' . $reisdatum['reiscode'] . '</td>';
+			$output .= '<td>' . $reisdatum['prijs'] . '</td>';
+			$output .= '<td>' . $reisdatum['beschikbare_plaatsen'] . '</td>';
+			$output .= '<td>' . $reisdatum['vertrekgarantie'] . '</td>';
 			$output .= '</tr>';
 		}
 		$output .= '</table>';
