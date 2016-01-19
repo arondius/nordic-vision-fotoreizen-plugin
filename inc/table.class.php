@@ -57,7 +57,7 @@ class webbb_fotoreizen_table {
 		return $output;
 	}
 
-	protected function cmp($a, $b) {
+	public function cmp($a, $b) {
 		$formatted_time_a = strtotime(str_replace('/', '-', $a['reisdatum_start']));
 		$formatted_time_b = strtotime(str_replace('/', '-', $b['reisdatum_start']));
 
