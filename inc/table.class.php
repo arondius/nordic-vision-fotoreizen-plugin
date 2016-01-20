@@ -26,9 +26,16 @@ class webbb_fotoreizen_table {
 			$formatted_date_end = date_i18n('d M Y', strtotime($reisdatum['reisdatum_eind']));
 			$bln_bookable = $reisdatum['beschikbare_plaatsen'] > 0;
 			$bookings_link = site_url('boek-een-fotoreis') . '/?reiscode=' . $reiscode;
-			$bookings_open_tag = $bln_bookable ? '<a class="btn btn-small btn-cta" href="' . $bookings_link . '">' : '<span class="btn btn-small btn-inactive">';
+			$booking_availability_class = 'plaatsen_high';
+			if($reisdatum['beschikbare_plaatsen'] < 6 && $reisdatum['beschikbare_plaatsen'] > 3) {
+				$booking_availability_class = 'plaatsen_medium';
+			} else if ($reisdatum['beschikbare_plaatsen'] <= 3) {
+				$booking_availability_class = 'plaatsen_low';
+			}
+
+			$bookings_open_tag = $bln_bookable ? '<a class="btn btn-small btn-cta ' . $booking_availability_class . '" href="' . $bookings_link . '">' : '<span class="btn btn-small btn-inactive">';
 			$boekings_num_plaatsen = $bln_bookable ? '<span class="num-plaatsen">' . $reisdatum['beschikbare_plaatsen'] .  ' </span>' : '';
-			$boekings_cta_text = '<span class="numplaatsen-text">' . ($bln_bookable ? ' - Boek deze reis' : 'Volgeboekt') . '</span>';
+			$boekings_cta_text = '<span class="numplaatsen-text">' . ($bln_bookable ? 'Boek deze reis' : 'Volgeboekt') . '</span>';
 			$bookings_close_tag = $bln_bookable ? '</a>' : '</span>';
 			$booking_html = $bookings_open_tag . $boekings_num_plaatsen . $boekings_cta_text . $bookings_close_tag;
 
