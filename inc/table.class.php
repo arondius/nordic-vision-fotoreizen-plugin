@@ -19,7 +19,7 @@ class webbb_fotoreizen_table {
 		$output .= '<div class="responsive-table-wrapper">';
 		$output .= '<table class="fotoreizen-calender">';
 		$output .= '<tr>';
-		$output .= '<th>Reisdatum</th><th>Reis</th><th>Reiscode</th><th>Prijs</th><th>Beschibare Plaatsen</th><th>Vertrekgarantie</th>';
+		$output .= '<th class="column-reisdatum">Reisdatum</th><th class="column-titel">Reis</th><th class="column-reiscode">Reiscode</th><th class="column-prijs">Prijs</th><th class="column-availability">Beschibare Plaatsen</th><th class="column-vertrekgarantie">Vertrekgarantie</th>';
 		$output .= '</tr>';
 		foreach($reisdatums as $reiscode => $reisdatum) {
 			$formatted_date_start = date_i18n('d M Y', strtotime($reisdatum['reisdatum_start']));
@@ -40,12 +40,12 @@ class webbb_fotoreizen_table {
 			$booking_html = $bookings_open_tag . $boekings_num_plaatsen . $boekings_cta_text . $bookings_close_tag;
 
 			$output .= '<tr>';
-			$output .= '<td data-href="' . $reisdatum['permalink'] . '">' . $formatted_date_start  . ' t/m ' . $formatted_date_end  . '</td>';
-			$output .= '<td data-href="' . $reisdatum['permalink'] . '"><a href="'. $reisdatum['permalink']. '">' . $reisdatum['title'] . '</a></td>';
-			$output .= '<td data-href="' . $reisdatum['permalink'] . '">' . $reiscode . '</td>';
-			$output .= '<td data-href="' . $reisdatum['permalink'] . '">' . $reisdatum['prijs'] . '</td>';
-			$output .= '<td data-href="' . $bookings_link . '">' . $booking_html . '</td>';
-			$output .= '<td data-href="' . $reisdatum['permalink'] . '">' . $reisdatum['vertrekgarantie'] . '</td>';
+			$output .= '<td data-href="' . $reisdatum['permalink'] . '" class="column-reisdatum">' . $formatted_date_start  . ' t/m ' . $formatted_date_end  . '</td>';
+			$output .= '<td data-href="' . $reisdatum['permalink'] . '" class="column-titel"><a href="'. $reisdatum['permalink']. '">' . $reisdatum['title'] . '</a></td>';
+			$output .= '<td data-href="' . $reisdatum['permalink'] . '" class="column-reiscode">' . $reiscode . '</td>';
+			$output .= '<td data-href="' . $reisdatum['permalink'] . '" class="column-prijs">' . $reisdatum['prijs'] . '</td>';
+			$output .= '<td data-href="' . $bookings_link . '" class="column-availability">' . $booking_html . '</td>';
+			$output .= '<td data-href="' . $reisdatum['permalink'] . '" class="column-vertrekgarantie">' . $reisdatum['vertrekgarantie'] . '</td>';
 			$output .= '</tr>';
 		}
 		$output .= '</table>';
