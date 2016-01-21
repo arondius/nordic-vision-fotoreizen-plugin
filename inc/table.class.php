@@ -34,7 +34,7 @@ class webbb_fotoreizen_table {
 			}
 
 			$bookings_open_tag = $bln_bookable ? '<a class="btn btn-small btn-cta ' . $booking_availability_class . '" href="' . $bookings_link . '">' : '<span class="btn btn-small btn-inactive">';
-			$boekings_num_plaatsen = $bln_bookable ? '<span class="num-plaatsen">' . $reisdatum['beschikbare_plaatsen'] .  ' </span>' : '';
+			$boekings_num_plaatsen = '<span class="num-plaatsen">' . ($bln_bookable ? $reisdatum['beschikbare_plaatsen'] : '0')	 . ' </span>';
 			$boekings_cta_text = '<span class="numplaatsen-text">' . ($bln_bookable ? 'Boek deze reis' : 'Volgeboekt') . '</span>';
 			$bookings_close_tag = $bln_bookable ? '</a>' : '</span>';
 			$booking_html = $bookings_open_tag . $boekings_num_plaatsen . $boekings_cta_text . $bookings_close_tag;
