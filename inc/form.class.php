@@ -26,9 +26,12 @@ class webbb_fotoreizen_form {
 			foreach ( $travel_tours_array as $reiscode => $data ) {
 
 				if($data['bookable']) {
-					$reisdatum = $data['reisdatum_start'] . ' - ' . $data['reisdatum_eind'];
+					$formatted_date_start = date_i18n('d M Y', strtotime($data['reisdatum_start']));
+					$formatted_date_end = date_i18n('d M Y', strtotime($data['reisdatum_eind']));
+					$reisdatum = $formatted_date_start . ' - ' . $formatted_date_end;
 					$title = $data['title'];
-					$text = ($field->type == 'checkbox' || $field->type == 'radio') ? '<span class="col-4">' . $title  . '</span><span class="col-4">' . $reisdatum . '</span><span class="col-4">' . $reiscode . '</span>' : $title  . ' - ' . $reisdatum . ' - ' . $reiscode;
+					$prijs = $data['prijs'];
+					$text = ($field->type == 'checkbox' || $field->type == 'radio') ? '<span class="webbb-col-3"><strong>' . $title  . '</strong></span><span class="webbb-col-4">' . $reisdatum . '</span><span class="webbb-col-3"><span class="webbb-label">' . $prijs . '</span></span><span class="webbb-col-2"><strong>' . $reiscode . '<strong></span>' : $title  . ' - ' . $reisdatum . ' - ' . $reiscode;
 
 					$choices[$reiscode] = array(
 						'text' => $text,
