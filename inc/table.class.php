@@ -19,7 +19,7 @@ class webbb_fotoreizen_table {
 		$output .= '<div class="responsive-table-wrapper">';
 		$output .= '<table class="fotoreizen-calender">';
 		$output .= '<tr>';
-		$output .= '<th class="column-reisdatum">Reisdatum</th><th class="column-titel">Reis</th><th class="column-reiscode">Reiscode</th><th class="column-prijs">Prijs</th><th class="column-availability">Beschibare Plaatsen</th><th class="column-vertrekgarantie">Vertrekgarantie</th>';
+		$output .= '<th class="column-reisdatum">Reisdatum</th><th class="column-titel">Reis</th><th class="column-reiscode">Reiscode</th><th class="column-prijs">Prijs</th><th class="column-availability">Beschikbare Plaatsen</th><th class="column-vertrekgarantie">Vertrekgarantie</th>';
 		$output .= '</tr>';
 		foreach($reisdatums as $reiscode => $reisdatum) {
 			$formatted_date_start = date_i18n('d M Y', strtotime($reisdatum['reisdatum_start']));
