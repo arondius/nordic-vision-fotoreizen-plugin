@@ -159,12 +159,22 @@ acf_add_local_field_group(array (
 				'operator' => '==',
 				'value' => 'fotoreizen',
 			),
+			array (
+				'param' => 'page_type',
+				'operator' => '==',
+				'value' => 'child',
+			),
 		),
 		array (
 			array (
 				'param' => 'post_type',
 				'operator' => '==',
 				'value' => 'fotoworkshops',
+			),
+			array (
+				'param' => 'page_type',
+				'operator' => '==',
+				'value' => 'child',
 			),
 		),
 	),
