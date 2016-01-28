@@ -59,7 +59,7 @@ class Fotoreizen_ACF_CF_Widget extends WP_Widget {
 				if($reisgegevens[$reiscode]['bookable']) {
 					$output .= '<div class="main-cta"><a href="' . site_url() . '/boek-een-fotoreis/?reiscode='. $reiscode.'" class="main-cta__link active"><span data-av_icon="" data-av_iconfont="entypo-fontello"></span><span class="avia_iconbox_title">Boek deze reis</span></a></div>';
 				} else {
-					$output .= '<div class="main-cta"><span class="main-cta__link inactive"><span data-av_icon="" data-av_iconfont="entypo-fontello"></span><span class="avia_iconbox_title">Volgeboekt</span></a></div>';
+					$output .= '<div class="main-cta"><span class="main-cta__link inactive"><span data-av_icon="" data-av_iconfont="entypo-fontello"></span><span class="avia_iconbox_title">Volgeboekt</span></span></div>';
 				}
 				$output .= $args['after_widget'];
 			}
