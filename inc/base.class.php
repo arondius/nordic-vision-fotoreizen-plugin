@@ -19,7 +19,7 @@ class webbb_fotoreizen_base {
 		}
 
 		if(have_rows('reiscode_datum', $post_id)) { // Repeater Fields for reisdata
-			$reisgegevens = array();
+			$reisgegevens = null;
 			while(have_rows('reiscode_datum', $post_id)) {
 				the_row();
 
@@ -61,13 +61,15 @@ class webbb_fotoreizen_base {
 		$fotoreizen = $this->populate_photo_destinations_array();
 		$reisdatums = array();
 		foreach($fotoreizen as $fotoreis_id => $bestemming) {
-			foreach ($bestemming['reis'] as $reiscode => $date) {				
-				$reisdatums[$reiscode]['permalink'] = post_permalink($fotoreis_id);
-				$reisdatums[$reiscode]['title'] = $bestemming['title'];
-				$reisdatums[$reiscode]['bookable'] = $date['bookable'];
-				if(!empty($date['data']['reisdatum_start'][1])) {
-					foreach($date['data'] as $key => $date_entry) {
-						$reisdatums[$reiscode][$key] = $date_entry[1];
+			if($bestemming['reis']) {
+				foreach ($bestemming['reis'] as $reiscode => $date) {
+					$reisdatums[$reiscode]['permalink'] = post_permalink($fotoreis_id);
+					$reisdatums[$reiscode]['title'] = $bestemming['title'];
+					$reisdatums[$reiscode]['bookable'] = $date['bookable'];
+					if(!empty($date['data']['reisdatum_start'][1])) {
+						foreach($date['data'] as $key => $date_entry) {
+							$reisdatums[$reiscode][$key] = $date_entry[1];
+						}
 					}
 				}
 			}
