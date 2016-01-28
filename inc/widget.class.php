@@ -37,7 +37,7 @@ class Fotoreizen_ACF_CF_Widget extends WP_Widget {
 		$reisgegevens = $base->get_travel_fields();
 		// If any values: output table start tag
 		if(!empty($reisgegevens)) {
-			
+
 			foreach($reisgegevens as $reiscode => $value) {
 				$output .= '<table class="reisdata-tabel">';
 				$output .= '<tr><th>Reiscode:</th><th>' . $reiscode . '</th></tr>';
