@@ -56,14 +56,20 @@ class Fotoreizen_ACF_CF_Widget extends WP_Widget {
 					}
 				}
 				$output .= '</table>';
+				$output .= '<div class="main-cta">';
 				if($reisgegevens[$reiscode]['bookable']) {
-					$output .= '<div class="main-cta"><a href="' . site_url() . '/boek-een-fotoreis/?reiscode='. $reiscode.'" class="main-cta__link active"><span data-av_icon="" data-av_iconfont="entypo-fontello"></span><span class="avia_iconbox_title">Boek deze reis</span></a></div>';
+					$output .= '<a href="' . site_url() . '/boek-een-fotoreis/?reiscode='. $reiscode.'" class="main-cta__link active"><span data-av_icon="" data-av_iconfont="entypo-fontello"></span><span class="avia_iconbox_title">Boek deze reis</span></a>';
 				} else {
-					$output .= '<div class="main-cta"><span class="main-cta__link inactive"><span data-av_icon="" data-av_iconfont="entypo-fontello"></span><span class="avia_iconbox_title">Volgeboekt</span></span></div>';
+					$output .= '<span class="main-cta__link inactive">
+													<span data-av_icon="" data-av_iconfont="entypo-fontello"></span>
+													<span class="avia_iconbox_title">Volgeboekt</span>
+												</span>
+											';
 				}
-				$output .= $args['after_widget'];
+				$output .= '</div>';
 			}
-		}		
+		}
+		$output .= $args['after_widget'];
 		echo $output;
 	}
 }
