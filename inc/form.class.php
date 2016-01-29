@@ -12,7 +12,6 @@ class webbb_fotoreizen_form {
 	}
 
 	public function fotoreizen_populate_form( $form ) {
-
 		foreach ( $form['fields'] as &$field ) {
 
 			if ( ($field->type != 'select' && $field->type != 'checkbox' && $field->type != 'radio') || strpos( $field->cssClass, 'dynamic_travelcode' ) === false ) {
@@ -45,7 +44,6 @@ class webbb_fotoreizen_form {
 			$field->placeholder = 'Selecteer een fotoreis';
 			$field->choices = $choices;
 		}
-
 		return $form;
 	}
 }
