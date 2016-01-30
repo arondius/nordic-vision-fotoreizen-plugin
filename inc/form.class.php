@@ -30,7 +30,13 @@ class webbb_fotoreizen_form {
 					$reisdatum = $formatted_date_start . ' - ' . $formatted_date_end;
 					$title = $data['title'];
 					$prijs = $data['prijs'];
-					$text = ($field->type == 'checkbox' || $field->type == 'radio') ? '<span class="dynamic_travelcode--radio-title"><strong>' . $title  . '</strong></span><span class="dynamic_travelcode--radio-date">' . $reisdatum . '</span><span class="dynamic_travelcode--radio-price"><span class="webbb-label">' . $prijs . '</span></span><span class="dynamic_travelcode--radio-travel-code"><strong>' . $reiscode . '</strong></span>' : $title  . ' - ' . $reisdatum . ' - ' . $reiscode;
+					$text = ($field->type == 'checkbox' || $field->type == 'radio') ? 
+					'<span class="dynamic_travelcode--radio-title"><strong>' . $title  . '</strong></span>'
+					.'<span class="dynamic_travelcode--radio-price"><span class="webbb-label">' . $prijs . '</span></span>'
+					.'<span class="dynamic_travelcode--radio-date">' . $reisdatum . '</span>'
+					.'<span class="dynamic_travelcode--radio-travel-code"><strong>' . $reiscode . '</strong></span>'
+
+					: $title  . ' - ' . $reisdatum . ' - ' . $reiscode;
 
 					$choices[$reiscode] = array(
 						'text' => $text,
