@@ -15,7 +15,7 @@ class webbb_fotoreizen_table {
 	public function generate_table() {
 		$base = new webbb_fotoreizen_base();
 		$reisdatums = $base->generate_photo_tours_array();
-		$output .= '<p class="display-tablet swipe-info">' . __('Swipe de tabel om alles te zien', 'enfold-child') . '</p>';
+		$output = '<p class="display-tablet swipe-info">' . __('Swipe de tabel om alles te zien', 'enfold-child') . '</p>';
 		$output .= '<div class="responsive-table-wrapper">';
 		$output .= '<table class="fotoreizen-calender">';
 		$output .= '<tr>';
