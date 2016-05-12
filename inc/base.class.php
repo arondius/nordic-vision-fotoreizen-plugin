@@ -42,7 +42,7 @@ class webbb_fotoreizen_base {
 
 	public function get_fotoreizen() {
 		$posts = array();
-		$args = array('post_type' => 'fotoreizen', 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC');
+		$args = array('post_type' => 'fotoreizen', 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC', 'post_status' => 'publish');
 		return get_posts($args);
 	}
 
